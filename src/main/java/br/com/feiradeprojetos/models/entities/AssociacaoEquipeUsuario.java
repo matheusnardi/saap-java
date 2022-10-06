@@ -1,36 +1,29 @@
 package br.com.feiradeprojetos.models.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Equipe {
+public class AssociacaoEquipeUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nome;
+    @Column(name = "idAluno")
+    private Integer idAluno;
+    
+    @Column(name = "idEquipe")
+    private Integer idEquipe;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = AssociacaoEquipeUsuario.class)
-    @JoinColumn(name = "idEquipe")
-    private List<AssociacaoEquipeUsuario> usuariosEquipe;
-
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Projeto.class)
-    @JoinColumn(name = "idEquipe")
-    private List<Projeto> projetosEquipe;
-
-    public Equipe() {
+    public AssociacaoEquipeUsuario() {
     }
 
-    public Equipe(String nome) {
-        this.nome = nome;
+    public AssociacaoEquipeUsuario(Integer idAluno, Integer idEquipe) {
+        this.idAluno = idAluno;
+        this.idEquipe = idEquipe;
     }
 
     public Integer getId() {
@@ -41,12 +34,20 @@ public class Equipe {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getIdUsuario() {
+        return idAluno;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdUsuario(Integer idAluno) {
+        this.idAluno = idAluno;
+    }
+
+    public Integer getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(Integer idEquipe) {
+        this.idEquipe = idEquipe;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class Equipe {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Equipe other = (Equipe) obj;
+        AssociacaoEquipeUsuario other = (AssociacaoEquipeUsuario) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -76,6 +77,6 @@ public class Equipe {
 
     @Override
     public String toString() {
-        return "Equipe [id=" + id + ", nome=" + nome + ", usuariosEquipe=" + usuariosEquipe + "]";
+        return "AssociacaoEquipeUsuario [id=" + id + ", idAluno=" + idAluno + ", idEquipe=" + idEquipe + "]";
     }
 }

@@ -1,57 +1,51 @@
 package br.com.feiradeprojetos.models.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class Projeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
-    private String nomeUsuario;
-    private String email;
-    private String senha;
-    public Usuario() {
-    }
-    public Usuario(String nome, String nomeUsuario, String email, String senha) {
+
+    @Column(name = "idEquipe")
+    private Integer idEquipe;
+
+    public Projeto(String nome, Integer idEquipe) {
         this.nome = nome;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
+        this.idEquipe = idEquipe;
     }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getNomeUsuario() {
-        return nomeUsuario;
+
+    public Integer getIdEquipe() {
+        return idEquipe;
     }
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+
+    public void setIdEquipe(Integer idEquipe) {
+        this.idEquipe = idEquipe;
     }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -59,6 +53,7 @@ public class Usuario {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -67,7 +62,7 @@ public class Usuario {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Usuario other = (Usuario) obj;
+        Projeto other = (Projeto) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -75,9 +70,9 @@ public class Usuario {
             return false;
         return true;
     }
+
     @Override
     public String toString() {
-        return "Usuario [email=" + email + ", id=" + id + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", senha="
-                + senha + "]";
+        return "Projeto [id=" + id + ", nome=" + nome + ", idEquipe=" + idEquipe + "]";
     }
 }

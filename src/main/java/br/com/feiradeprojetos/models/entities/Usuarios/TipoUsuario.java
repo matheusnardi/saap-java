@@ -1,26 +1,23 @@
-package br.com.feiradeprojetos.models.entities;
+package br.com.feiradeprojetos.models.entities.Usuarios;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
-public class AssociacaoUsuarioEquipe {
+public class TipoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
-    private Usuario usuario;
+    private String tipo;
 
-    @ManyToMany
-    private Equipe equipe;
+    public TipoUsuario() {
+    }
 
-    public AssociacaoUsuarioEquipe(Usuario usuario, Equipe equipe) {
-        this.usuario = usuario;
-        this.equipe = equipe;
+    public TipoUsuario(String tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getId() {
@@ -31,20 +28,12 @@ public class AssociacaoUsuarioEquipe {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Equipe getEquipe() {
-        return equipe;
-    }
-
-    public void setEquipe(Equipe equipe) {
-        this.equipe = equipe;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
@@ -63,7 +52,7 @@ public class AssociacaoUsuarioEquipe {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AssociacaoUsuarioEquipe other = (AssociacaoUsuarioEquipe) obj;
+        TipoUsuario other = (TipoUsuario) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -74,6 +63,6 @@ public class AssociacaoUsuarioEquipe {
 
     @Override
     public String toString() {
-        return "AssociacaoUsuarioEquipe [equipe=" + equipe + ", id=" + id + ", usuario=" + usuario + "]";
+        return "TipoUsuario [id=" + id + ", tipo=" + tipo + "]";
     }
 }

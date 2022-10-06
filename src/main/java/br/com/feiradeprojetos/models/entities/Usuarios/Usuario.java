@@ -1,36 +1,29 @@
-package br.com.feiradeprojetos.models.entities;
+package br.com.feiradeprojetos.models.entities.Usuarios;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Equipe {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
     private String nome;
+    private String nomeUsuario;
+    private String email;
+    private String senha;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = AssociacaoEquipeUsuario.class)
-    @JoinColumn(name = "idEquipe")
-    private List<AssociacaoEquipeUsuario> usuariosEquipe;
-
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Projeto.class)
-    @JoinColumn(name = "idEquipe")
-    private List<Projeto> projetosEquipe;
-
-    public Equipe() {
+    public Usuario() {
     }
 
-    public Equipe(String nome) {
+    public Usuario(String nome, String nomeUsuario, String email, String senha) {
         this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -49,6 +42,30 @@ public class Equipe {
         this.nome = nome;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -65,7 +82,7 @@ public class Equipe {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Equipe other = (Equipe) obj;
+        Usuario other = (Usuario) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -76,6 +93,8 @@ public class Equipe {
 
     @Override
     public String toString() {
-        return "Equipe [id=" + id + ", nome=" + nome + ", usuariosEquipe=" + usuariosEquipe + "]";
+        return "Usuario [id=" + id + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", email=" + email + ", senha="
+                + senha + ", equipesUsuario=" + "]";
     }
+
 }
